@@ -21,7 +21,9 @@ A Claude Code plugin for orchestrating complex tasks by delegating to multiple p
 
 ## Quick Installation
 
-**One-click Install (Recommended):**
+### Method 1: One-Click Install Script (Recommended)
+
+**For: First-time users, prefer fully automatic installation**
 
 ```bash
 git clone https://github.com/CoderMageFox/claudecode-codex-subagents.git
@@ -36,6 +38,94 @@ cd claudecode-codex-subagents
 - ✅ Configures MCP server (no manual setup needed)
 - ✅ Installs both Chinese and English commands
 - ✅ Verifies installation integrity
+
+### Method 2: Install via Claude Code Plugin System
+
+**For: Familiar with Claude Code plugin system, prefer plugin management**
+
+#### Step 1: Add Plugin Marketplace
+
+Run in Claude Code:
+
+```bash
+# Method A: Add via GitHub URL
+/plugin marketplace add CoderMageFox/claudecode-codex-subagents
+
+# Method B: Or add in settings.json
+```
+
+Add to `~/.claude/settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": [
+    {
+      "name": "codex-subagents",
+      "url": "https://github.com/CoderMageFox/claudecode-codex-subagents"
+    }
+  ]
+}
+```
+
+#### Step 2: Install Plugin
+
+```bash
+# Install from marketplace
+/plugin install codex-subagents@CoderMageFox
+
+# Or install directly via GitHub path
+/plugin install CoderMageFox/claudecode-codex-subagents
+```
+
+#### Step 3: Configure MCP Server
+
+Manually add to `~/.claude/mcp_settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "codex-subagent": {
+      "command": "uvx",
+      "args": ["codex-as-mcp@latest"],
+      "transport": "stdio"
+    }
+  }
+}
+```
+
+#### Step 4: Restart Claude Code
+
+```bash
+# Exit current session
+exit
+
+# Restart Claude Code
+claude
+```
+
+#### Step 5: Verify Installation
+
+```bash
+# Validate plugin structure
+/plugin validate
+
+# Check MCP server status
+/mcp
+
+# Test command
+/codex-subagents create test task
+```
+
+### Installation Methods Comparison
+
+| Feature | One-Click Script | Plugin System |
+|---------|-----------------|---------------|
+| Difficulty | ⭐ Easy | ⭐⭐⭐ Medium |
+| Auto Config | ✅ Fully automatic | ❌ Manual MCP config |
+| Dependency Install | ✅ Auto-detect & install | ❌ Manual install |
+| Command Availability | ✅ Immediate | ✅ After restart |
+| Plugin Management | ⚠️ Manual update | ✅ Supports `/plugin update` |
+| Use Case | Quick start | Enterprise team management |
 
 **Prerequisites:**
 - Python 3 (usually pre-installed on macOS, script will auto-detect)
