@@ -36,8 +36,9 @@ cd claudecode-codex-subagents
 - ✅ 验证安装完整性
 
 **前置要求：**
-- Node.js >= 18
-- npm
+- Python 3 (macOS 自带)
+- uv (Python package manager)
+- Codex CLI >= 0.46.0
 - Claude Code CLI
 
 安装完成后，重启 Claude Code 即可使用。

@@ -36,8 +36,9 @@ cd claudecode-codex-subagents
 - ✅ Verifies installation integrity
 
 **Prerequisites:**
-- Node.js >= 18
-- npm
+- Python 3 (pre-installed on macOS)
+- uv (Python package manager)
+- Codex CLI >= 0.46.0
 - Claude Code CLI
 
 After installation, restart Claude Code to use.
