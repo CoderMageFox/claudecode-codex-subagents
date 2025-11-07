@@ -1,5 +1,10 @@
 # Codex Subagents - Claude Code Plugin
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Stars](https://img.shields.io/github/stars/CoderMageFox/claudecode-codex-subagents?style=social)](https://github.com/CoderMageFox/claudecode-codex-subagents)
+[![GitHub Issues](https://img.shields.io/github/issues/CoderMageFox/claudecode-codex-subagents)](https://github.com/CoderMageFox/claudecode-codex-subagents/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/CoderMageFox/claudecode-codex-subagents/pulls)
+
 [中文](./README-zh.md) | English
 
 A Claude Code plugin for orchestrating complex tasks by delegating to multiple parallel Codex agents, then merging and reviewing results.
