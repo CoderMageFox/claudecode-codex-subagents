@@ -227,3 +227,12 @@ CoderMageFox
 - [GitHub Repository](https://github.com/CoderMageFox/claudecode-codex-subagents)
 - [Claude Code Official Documentation](https://docs.claude.com/claude-code)
 - [Report Issues](https://github.com/CoderMageFox/claudecode-codex-subagents/issues)
+
+## Community & Feedback
+
+**WeChat Feedback Group:**
+
+<div align="center">
+  <img src="./assets/wechat-qrcode.jpg" alt="WeChat Feedback Group" width="200"/>
+  <p><em>Scan to join WeChat group for help and feedback</em></p>
+</div>

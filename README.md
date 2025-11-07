@@ -227,3 +227,12 @@ CoderMageFox
 - [GitHub Repository](https://github.com/CoderMageFox/claudecode-codex-subagents)
 - [Claude Code 官方文档](https://docs.claude.com/claude-code)
 - [报告问题](https://github.com/CoderMageFox/claudecode-codex-subagents/issues)
+
+## 社区与反馈
+
+**微信问题反馈群：**
+
+<div align="center">
+  <img src="./assets/wechat-qrcode.jpg" alt="微信问题反馈群" width="200"/>
+  <p><em>扫码加入微信群，获取帮助和反馈问题</em></p>
+</div>
