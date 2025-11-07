@@ -24,6 +24,42 @@ Act as an intelligent orchestrator that:
 
 ## Process Flow
 
+### Step 0: Ensure .gitignore Setup (5 seconds)
+
+**IMPORTANT: Prevent committing temporary files**
+
+Before starting, ensure the project has proper .gitignore configuration:
+
+```bash
+# Check if .gitignore exists
+if [ ! -f .gitignore ]; then
+  echo "Creating .gitignore to prevent committing temporary files..."
+  cat > .gitignore << 'EOF'
+# Codex Subagents temporary files
+.codex-temp/
+
+# Common temporary files
+*.log
+.DS_Store
+EOF
+  echo "✓ Created .gitignore"
+else
+  # Check if .codex-temp/ is already ignored
+  if ! grep -q "\.codex-temp/" .gitignore; then
+    echo "Adding .codex-temp/ to .gitignore..."
+    echo "" >> .gitignore
+    echo "# Codex Subagents temporary files" >> .gitignore
+    echo ".codex-temp/" >> .gitignore
+    echo "✓ Updated .gitignore"
+  fi
+fi
+```
+
+**Why this matters:**
+- `.codex-temp/` contains agent logs and temporary files
+- These files are project-specific and should NOT be committed
+- Ensures clean git history without temporary artifacts
+
 ### Step 1: Task Analysis (30 seconds)
 Analyze the task to understand:
 - Scope and boundaries
