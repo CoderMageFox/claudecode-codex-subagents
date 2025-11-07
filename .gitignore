@@ -3,3 +3,6 @@
 node_modules/
 .vscode/
 .idea/
+
+# Codex subagent temporary files and logs
+.codex-temp/

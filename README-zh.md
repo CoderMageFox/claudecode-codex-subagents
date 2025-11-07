@@ -1,6 +1,6 @@
 # Codex Subagents - Claude Code Plugin
 
-[中文](./README-zh.md) | [English](./README-en.md)
+中文 | [English](./README-en.md)
 
 通过并行委托多个 Codex 代理来编排复杂任务，然后合并和审查结果的 Claude Code 插件。
 
