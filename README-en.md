@@ -30,16 +30,19 @@ cd claudecode-codex-subagents
 ```
 
 **Installation script automatically:**
+- ✅ Detects and auto-installs missing dependencies (Python 3, uv, Codex CLI)
 - ✅ Installs Plugin to `~/.claude/plugins/`
 - ✅ Configures MCP server (no manual setup needed)
 - ✅ Installs both Chinese and English commands
 - ✅ Verifies installation integrity
 
 **Prerequisites:**
-- Python 3 (pre-installed on macOS)
-- uv (Python package manager)
-- Codex CLI >= 0.46.0
+- Python 3 (usually pre-installed on macOS, script will auto-detect)
+- uv (script will prompt and auto-install)
+- Codex CLI >= 0.46.0 (script will prompt and auto-install)
 - Claude Code CLI
+
+> 💡 **Tip**: If dependencies are missing, the installation script will auto-detect and ask if you want to install them. No manual preparation needed!
 
 After installation, restart Claude Code to use.
 

@@ -48,26 +48,20 @@ if [ ${#MISSING_DEPS[@]} -gt 0 ]; then
         case $dep in
             python3)
                 echo -e "${YELLOW}📦 Python 3${NC}"
-                echo -e "   Python 3 应该已预装在 macOS 上"
-                echo -e "   请检查: ${GREEN}python3 --version${NC}"
+                echo -e "   将自动查找已安装的 Python 3 版本"
+                echo -e "   如未找到，请使用 Homebrew 安装:"
+                echo -e "   ${GREEN}brew install python3${NC}"
                 echo ""
                 ;;
             uvx)
                 echo -e "${YELLOW}📦 uv (Python 包管理器)${NC}"
-                echo -e "   自动安装命令:"
-                echo -e "   ${GREEN}curl -LsSf https://astral.sh/uv/install.sh | sh${NC}"
-                echo ""
-                echo -e "   安装后需要重新加载 shell 或运行:"
-                echo -e "   ${GREEN}source ~/.bashrc${NC}  # 或 source ~/.zshrc"
+                echo -e "   将自动安装 uv"
                 echo ""
                 ;;
             codex)
                 echo -e "${YELLOW}📦 Codex CLI${NC}"
-                echo -e "   自动安装命令:"
-                echo -e "   ${GREEN}npm install -g @openai/codex@latest${NC}"
-                echo ""
-                echo -e "   安装后需要登录:"
-                echo -e "   ${GREEN}codex login${NC}"
+                echo -e "   将自动安装 Codex CLI"
+                echo -e "   需要 npm (Node.js 包管理器)"
                 echo ""
                 ;;
         esac
@@ -79,55 +73,110 @@ if [ ${#MISSING_DEPS[@]} -gt 0 ]; then
 
     if [[ "$response" =~ ^[Yy]$ ]]; then
         echo ""
-        echo -e "${BLUE}开始自动安装...${NC}"
+        echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+        echo -e "${BLUE}  开始自动安装依赖${NC}"
+        echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
         echo ""
+
+        INSTALL_SUCCESS=true
+        NEED_CODEX_LOGIN=false
 
         for dep in "${MISSING_DEPS[@]}"; do
             case $dep in
                 python3)
-                    echo -e "${RED}Python 3 需要手动安装${NC}"
-                    echo -e "${YELLOW}请访问: https://www.python.org/downloads/${NC}"
-                    exit 1
+                    echo -e "${YELLOW}[Python 3] 检测中...${NC}"
+                    # 尝试查找 Python 3
+                    if command -v python3.11 &> /dev/null; then
+                        echo -e "${GREEN}✓ 找到 Python 3.11${NC}"
+                        ln -sf $(which python3.11) /usr/local/bin/python3 2>/dev/null || true
+                    elif command -v python3.10 &> /dev/null; then
+                        echo -e "${GREEN}✓ 找到 Python 3.10${NC}"
+                        ln -sf $(which python3.10) /usr/local/bin/python3 2>/dev/null || true
+                    elif command -v python3.9 &> /dev/null; then
+                        echo -e "${GREEN}✓ 找到 Python 3.9${NC}"
+                        ln -sf $(which python3.9) /usr/local/bin/python3 2>/dev/null || true
+                    else
+                        echo -e "${RED}✗ 未找到任何 Python 3 版本${NC}"
+                        echo -e "${YELLOW}请使用 Homebrew 安装:${NC}"
+                        echo -e "${GREEN}brew install python3${NC}"
+                        INSTALL_SUCCESS=false
+                    fi
+                    echo ""
                     ;;
                 uvx)
-                    echo -e "${YELLOW}正在安装 uv...${NC}"
-                    curl -LsSf https://astral.sh/uv/install.sh | sh
+                    echo -e "${YELLOW}[uv] 正在安装...${NC}"
+                    if curl -LsSf https://astral.sh/uv/install.sh | sh; then
+                        # 重新加载环境变量
+                        export PATH="$HOME/.local/bin:$PATH"
 
-                    # 重新加载环境变量
-                    export PATH="$HOME/.local/bin:$PATH"
-
-                    if command -v uvx &> /dev/null; then
-                        echo -e "${GREEN}✓ uv 安装成功${NC}"
+                        # 验证安装
+                        if command -v uvx &> /dev/null; then
+                            UVX_VERSION=$(uvx --version 2>&1 | head -1)
+                            echo -e "${GREEN}✓ uv 安装成功: $UVX_VERSION${NC}"
+                        else
+                            echo -e "${YELLOW}⚠ uv 已安装但未在 PATH 中${NC}"
+                            echo -e "${YELLOW}请运行: ${GREEN}source ~/.bashrc${NC} 或 ${GREEN}source ~/.zshrc${NC}"
+                            echo -e "${YELLOW}然后重新运行此脚本${NC}"
+                            INSTALL_SUCCESS=false
+                        fi
                     else
-                        echo -e "${RED}✗ uv 安装失败，请手动安装${NC}"
-                        exit 1
+                        echo -e "${RED}✗ uv 安装失败${NC}"
+                        INSTALL_SUCCESS=false
                     fi
                     echo ""
                     ;;
                 codex)
-                    echo -e "${YELLOW}正在安装 Codex CLI...${NC}"
-                    npm install -g @openai/codex@latest
+                    echo -e "${YELLOW}[Codex CLI] 正在安装...${NC}"
 
-                    if command -v codex &> /dev/null; then
-                        echo -e "${GREEN}✓ Codex CLI 安装成功${NC}"
-                        echo -e "${YELLOW}请运行以下命令登录:${NC}"
-                        echo -e "${GREEN}codex login${NC}"
-                        echo ""
-                        echo -e "${YELLOW}登录后请重新运行安装脚本${NC}"
-                        exit 0
+                    # 检查是否有 npm
+                    if ! command -v npm &> /dev/null; then
+                        echo -e "${RED}✗ 未找到 npm${NC}"
+                        echo -e "${YELLOW}请先安装 Node.js:${NC}"
+                        echo -e "${GREEN}brew install node${NC}"
+                        INSTALL_SUCCESS=false
                     else
-                        echo -e "${RED}✗ Codex CLI 安装失败${NC}"
-                        echo -e "${YELLOW}请手动安装: npm install -g @openai/codex@latest${NC}"
-                        exit 1
+                        if npm install -g @openai/codex@latest; then
+                            if command -v codex &> /dev/null; then
+                                CODEX_VERSION=$(codex --version 2>&1 | head -1)
+                                echo -e "${GREEN}✓ Codex CLI 安装成功: $CODEX_VERSION${NC}"
+                                NEED_CODEX_LOGIN=true
+                            else
+                                echo -e "${RED}✗ Codex CLI 安装失败${NC}"
+                                INSTALL_SUCCESS=false
+                            fi
+                        else
+                            echo -e "${RED}✗ Codex CLI 安装失败${NC}"
+                            INSTALL_SUCCESS=false
+                        fi
                     fi
+                    echo ""
                     ;;
             esac
         done
 
-        echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-        echo -e "${GREEN}依赖安装完成！请重新运行此脚本继续安装${NC}"
-        echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-        exit 0
+        echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+
+        if [ "$INSTALL_SUCCESS" = true ]; then
+            echo -e "${GREEN}✅ 所有依赖安装成功！${NC}"
+            echo ""
+
+            if [ "$NEED_CODEX_LOGIN" = true ]; then
+                echo -e "${YELLOW}⚠️  重要提示：${NC}"
+                echo -e "${YELLOW}请先运行以下命令登录 Codex CLI:${NC}"
+                echo -e "${GREEN}codex login${NC}"
+                echo ""
+                echo -e "${YELLOW}登录完成后，本脚本将继续安装...${NC}"
+                echo ""
+                read -p "按 Enter 键继续..."
+            fi
+
+            echo -e "${BLUE}继续 Plugin 安装流程...${NC}"
+            echo ""
+        else
+            echo -e "${RED}❌ 部分依赖安装失败${NC}"
+            echo -e "${YELLOW}请根据上述提示手动安装失败的依赖，然后重新运行此脚本${NC}"
+            exit 1
+        fi
     else
         echo ""
         echo -e "${RED}安装已取消${NC}"
