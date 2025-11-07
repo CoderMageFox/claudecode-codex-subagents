@@ -19,75 +19,28 @@ A Claude Code plugin for orchestrating complex tasks by delegating to multiple p
 - 🔄 **Smart Merging**: Automatically detect conflicts and apply optimal merge strategies
 - ✅ **Quality Validation**: Multiple validation gates including compilation, testing, and code quality checks
 
-## Installation
+## Quick Installation
 
-> **Language Selection**:
-> - Default version is **Chinese** (`codex-subagents.md`)
-> - For English version, install `codex-subagents-en.md`
+**One-click Install (Recommended):**
 
-### Method 1: Manual Installation
-
-**Install English version:**
-```bash
-cp codex-subagents-en.md ~/.claude/commands/codex-subagents.md
-# Or keep both versions
-cp codex-subagents-en.md ~/.claude/commands/
-```
-
-**Install Chinese version (default):**
-```bash
-cp codex-subagents.md ~/.claude/commands/
-```
-
-### Method 2: Git Clone
-
-**Install English version:**
 ```bash
 git clone https://github.com/CoderMageFox/claudecode-codex-subagents.git
 cd claudecode-codex-subagents
-cp codex-subagents-en.md ~/.claude/commands/codex-subagents.md
+./install.sh
 ```
 
-**Install Chinese version:**
-```bash
-git clone https://github.com/CoderMageFox/claudecode-codex-subagents.git
-cd claudecode-codex-subagents
-cp codex-subagents.md ~/.claude/commands/
-```
+**Installation script automatically:**
+- ✅ Installs Plugin to `~/.claude/plugins/`
+- ✅ Configures MCP server (no manual setup needed)
+- ✅ Installs both Chinese and English commands
+- ✅ Verifies installation integrity
 
-### Method 3: Using curl
+**Prerequisites:**
+- Node.js >= 18
+- npm
+- Claude Code CLI
 
-**Install English version:**
-```bash
-curl -o ~/.claude/commands/codex-subagents.md \
-  https://raw.githubusercontent.com/CoderMageFox/claudecode-codex-subagents/main/codex-subagents-en.md
-```
-
-**Install Chinese version:**
-```bash
-curl -o ~/.claude/commands/codex-subagents.md \
-  https://raw.githubusercontent.com/CoderMageFox/claudecode-codex-subagents/main/codex-subagents.md
-```
-
-## Prerequisites
-
-1. **Install Claude Code CLI**
-
-   Refer to [Claude Code Official Documentation](https://docs.claude.com/claude-code)
-
-2. **Configure Codex Subagent MCP Server**
-
-   You need to configure the `codex-subagent` MCP server in Claude Code. Add to `~/.claude/settings.local.json`:
-
-   ```json
-   {
-     "permissions": {
-       "allow": [
-         "mcp__codex-subagent__spawn_agents_parallel"
-       ]
-     }
-   }
-   ```
+After installation, restart Claude Code to use.
 
 ## Usage
 

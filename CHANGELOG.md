@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-11-07
+
+### Changed (Breaking)
+- 🎉 **重构为标准 Claude Code Plugin 格式**
+- 项目结构重组：
+  - 添加 `.claude-plugin/plugin.json` 元数据文件
+  - 移动命令文件到 `commands/` 目录
+  - 支持通过 `/plugin install` 安装
+- 安装方式更新：
+  - 推荐使用 Plugin 安装方式
+  - 保留手动安装方式作为备选
+  - 更新所有 README 文档的安装说明
+
+### Added
+- Plugin 管理支持：
+  - 通过 `/plugin install CoderMageFox/claudecode-codex-subagents` 安装
+  - 通过 `/plugin enable/disable` 管理
+  - 通过 `/plugin validate` 验证结构
+- 标准化 Plugin 元数据（plugin.json）
+  - 包含版本、作者、许可证等信息
+  - 声明 MCP 服务器依赖
+  - 定义所需权限
+- 自动安装中英文双版本命令
+
 ## [1.0.0] - 2025-11-07
 
 ### Added

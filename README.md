@@ -19,75 +19,28 @@
 - 🔄 **智能合并**: 自动检测冲突并应用最佳合并策略
 - ✅ **质量验证**: 包含编译、测试、代码质量等多重验证关卡
 
-## 安装方法
+## 快速安装
 
-> **语言选择**：
-> - 默认版本为**中文** (`codex-subagents.md`)
-> - 如需英文版本，请安装 `codex-subagents-en.md`
+**一键安装（推荐）：**
 
-### 方法 1: 手动安装
-
-**安装中文版本（推荐）：**
-```bash
-cp codex-subagents.md ~/.claude/commands/
-```
-
-**安装英文版本：**
-```bash
-cp codex-subagents-en.md ~/.claude/commands/codex-subagents.md
-# 或者保留两个版本
-cp codex-subagents-en.md ~/.claude/commands/
-```
-
-### 方法 2: Git 克隆
-
-**安装中文版本：**
 ```bash
 git clone https://github.com/CoderMageFox/claudecode-codex-subagents.git
 cd claudecode-codex-subagents
-cp codex-subagents.md ~/.claude/commands/
+./install.sh
 ```
 
-**安装英文版本：**
-```bash
-git clone https://github.com/CoderMageFox/claudecode-codex-subagents.git
-cd claudecode-codex-subagents
-cp codex-subagents-en.md ~/.claude/commands/codex-subagents.md
-```
+**安装脚本会自动完成：**
+- ✅ 安装 Plugin 到 `~/.claude/plugins/`
+- ✅ 配置 MCP 服务器（无需手动安装）
+- ✅ 自动安装中英文双版本命令
+- ✅ 验证安装完整性
 
-### 方法 3: 使用 curl
+**前置要求：**
+- Node.js >= 18
+- npm
+- Claude Code CLI
 
-**安装中文版本：**
-```bash
-curl -o ~/.claude/commands/codex-subagents.md \
-  https://raw.githubusercontent.com/CoderMageFox/claudecode-codex-subagents/main/codex-subagents.md
-```
-
-**安装英文版本：**
-```bash
-curl -o ~/.claude/commands/codex-subagents.md \
-  https://raw.githubusercontent.com/CoderMageFox/claudecode-codex-subagents/main/codex-subagents-en.md
-```
-
-## 前置要求
-
-1. **安装 Claude Code CLI**
-
-   参考 [Claude Code 官方文档](https://docs.claude.com/claude-code)
-
-2. **配置 Codex Subagent MCP Server**
-
-   需要在 Claude Code 中配置 `codex-subagent` MCP 服务器。在 `~/.claude/settings.local.json` 中添加：
-
-   ```json
-   {
-     "permissions": {
-       "allow": [
-         "mcp__codex-subagent__spawn_agents_parallel"
-       ]
-     }
-   }
-   ```
+安装完成后，重启 Claude Code 即可使用。
 
 ## 使用方法
 

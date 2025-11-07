@@ -1,0 +1,25 @@
+{
+  "name": "codex-subagents",
+  "version": "1.0.0",
+  "description": "通过并行委托多个 Codex 代理来编排复杂任务，然后合并和审查结果",
+  "author": "CoderMageFox",
+  "homepage": "https://github.com/CoderMageFox/claudecode-codex-subagents",
+  "license": "MIT",
+  "category": "orchestration",
+  "commands": [
+    {
+      "name": "codex-subagents",
+      "file": "commands/codex-subagents.md",
+      "description": "编排复杂任务的并行代理执行（中文版）"
+    },
+    {
+      "name": "codex-subagents-en",
+      "file": "commands/codex-subagents-en.md",
+      "description": "Orchestrate complex tasks with parallel agent execution (English)"
+    }
+  ],
+  "requirements": {
+    "mcpServers": ["codex-subagent"],
+    "permissions": ["mcp__codex-subagent__spawn_agents_parallel"]
+  }
+}
