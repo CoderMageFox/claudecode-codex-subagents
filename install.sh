@@ -31,7 +31,7 @@ check_dependency() {
     fi
 }
 
-echo -e "${YELLOW}[1/5] 检查依赖...${NC}"
+echo -e "${YELLOW}[1/6] 检查依赖...${NC}"
 check_dependency "python3"
 check_dependency "uvx"
 check_dependency "codex"
@@ -195,13 +195,13 @@ PLUGINS_DIR="$CLAUDE_DIR/plugins"
 MCP_SETTINGS="$CLAUDE_DIR/mcp_settings.json"
 
 # 创建必要的目录
-echo -e "${YELLOW}[2/5] 创建目录结构...${NC}"
+echo -e "${YELLOW}[2/6] 创建目录结构...${NC}"
 mkdir -p "$PLUGINS_DIR"
 echo -e "${GREEN}✓ 目录创建完成${NC}"
 echo ""
 
 # 安装 Plugin（符号链接）
-echo -e "${YELLOW}[3/5] 安装 Plugin...${NC}"
+echo -e "${YELLOW}[3/6] 安装 Plugin...${NC}"
 if [ -L "$PLUGINS_DIR/codex-subagents" ]; then
     echo -e "${YELLOW}  已存在安装，删除旧版本...${NC}"
     rm -f "$PLUGINS_DIR/codex-subagents"
@@ -210,8 +210,19 @@ ln -s "$SCRIPT_DIR" "$PLUGINS_DIR/codex-subagents"
 echo -e "${GREEN}✓ Plugin 已安装到: $PLUGINS_DIR/codex-subagents${NC}"
 echo ""
 
+# 同时复制命令到全局 commands 目录以确保直接可用
+echo -e "${YELLOW}[3.5/5] 安装命令到全局目录...${NC}"
+COMMANDS_DIR="$CLAUDE_DIR/commands"
+mkdir -p "$COMMANDS_DIR"
+
+# 复制命令文件
+cp "$SCRIPT_DIR/commands/codex-subagents.md" "$COMMANDS_DIR/"
+cp "$SCRIPT_DIR/commands/codex-subagents-en.md" "$COMMANDS_DIR/"
+echo -e "${GREEN}✓ 命令已复制到: $COMMANDS_DIR${NC}"
+echo ""
+
 # 配置 MCP 服务器
-echo -e "${YELLOW}[4/5] 配置 MCP 服务器...${NC}"
+echo -e "${YELLOW}[4/6] 配置 MCP 服务器...${NC}"
 
 # 读取或创建 mcp_settings.json
 if [ -f "$MCP_SETTINGS" ]; then
@@ -253,7 +264,7 @@ echo -e "${GREEN}✓ MCP 服务器配置完成${NC}"
 echo ""
 
 # 验证安装
-echo -e "${YELLOW}[5/5] 验证安装...${NC}"
+echo -e "${YELLOW}[5/6] 验证安装...${NC}"
 
 # 检查 Plugin 结构
 if [ -f "$PLUGINS_DIR/codex-subagents/.claude-plugin/plugin.json" ]; then

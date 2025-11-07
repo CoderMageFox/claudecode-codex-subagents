@@ -32,6 +32,7 @@ cd claudecode-codex-subagents
 **Installation script automatically:**
 - ✅ Detects and auto-installs missing dependencies (Python 3, uv, Codex CLI)
 - ✅ Installs Plugin to `~/.claude/plugins/`
+- ✅ **Copies commands to `~/.claude/commands/` for immediate availability**
 - ✅ Configures MCP server (no manual setup needed)
 - ✅ Installs both Chinese and English commands
 - ✅ Verifies installation integrity

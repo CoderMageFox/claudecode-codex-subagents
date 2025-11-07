@@ -32,6 +32,7 @@ cd claudecode-codex-subagents
 **安装脚本会自动完成：**
 - ✅ 检测并自动安装缺失的依赖（Python 3, uv, Codex CLI）
 - ✅ 安装 Plugin 到 `~/.claude/plugins/`
+- ✅ **复制命令到 `~/.claude/commands/` 以确保直接可用**
 - ✅ 配置 MCP 服务器（无需手动安装）
 - ✅ 自动安装中英文双版本命令
 - ✅ 验证安装完整性
