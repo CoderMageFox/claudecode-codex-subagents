@@ -16,19 +16,34 @@ A Claude Code plugin for orchestrating complex tasks by delegating to multiple p
 
 ## Installation
 
+> **Language Selection**:
+> - Default version is **Chinese** (`codex-subagents.md`)
+> - For English version, install `codex-subagents-en.md`
+
 ### Method 1: Manual Installation
 
-1. Download the `codex-subagents.md` file (or language-specific versions: `codex-subagents-en.md`, `codex-subagents-zh.md`)
-2. Copy the file to Claude Code's command directory:
-   ```bash
-   cp codex-subagents.md ~/.claude/commands/
-   # Or for specific languages:
-   cp codex-subagents-en.md ~/.claude/commands/
-   cp codex-subagents-zh.md ~/.claude/commands/
-   ```
+**Install English version:**
+```bash
+cp codex-subagents-en.md ~/.claude/commands/codex-subagents.md
+# Or keep both versions
+cp codex-subagents-en.md ~/.claude/commands/
+```
+
+**Install Chinese version (default):**
+```bash
+cp codex-subagents.md ~/.claude/commands/
+```
 
 ### Method 2: Git Clone
 
+**Install English version:**
+```bash
+git clone https://github.com/CoderMageFox/claudecode-codex-subagents.git
+cd claudecode-codex-subagents
+cp codex-subagents-en.md ~/.claude/commands/codex-subagents.md
+```
+
+**Install Chinese version:**
 ```bash
 git clone https://github.com/CoderMageFox/claudecode-codex-subagents.git
 cd claudecode-codex-subagents
@@ -37,6 +52,13 @@ cp codex-subagents.md ~/.claude/commands/
 
 ### Method 3: Using curl
 
+**Install English version:**
+```bash
+curl -o ~/.claude/commands/codex-subagents.md \
+  https://raw.githubusercontent.com/CoderMageFox/claudecode-codex-subagents/main/codex-subagents-en.md
+```
+
+**Install Chinese version:**
 ```bash
 curl -o ~/.claude/commands/codex-subagents.md \
   https://raw.githubusercontent.com/CoderMageFox/claudecode-codex-subagents/main/codex-subagents.md

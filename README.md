@@ -16,30 +16,52 @@
 
 ## 安装方法
 
+> **语言选择**：
+> - 默认版本为**中文** (`codex-subagents.md`)
+> - 如需英文版本，请安装 `codex-subagents-en.md`
+
 ### 方法 1: 手动安装
 
-1. 下载 `codex-subagents.md` 文件（或特定语言版本：`codex-subagents-en.md`、`codex-subagents-zh.md`）
-2. 将文件复制到 Claude Code 的命令目录：
-   ```bash
-   cp codex-subagents.md ~/.claude/commands/
-   # 或者使用特定语言版本：
-   cp codex-subagents-zh.md ~/.claude/commands/
-   cp codex-subagents-en.md ~/.claude/commands/
-   ```
+**安装中文版本（推荐）：**
+```bash
+cp codex-subagents.md ~/.claude/commands/
+```
+
+**安装英文版本：**
+```bash
+cp codex-subagents-en.md ~/.claude/commands/codex-subagents.md
+# 或者保留两个版本
+cp codex-subagents-en.md ~/.claude/commands/
+```
 
 ### 方法 2: Git 克隆
 
+**安装中文版本：**
 ```bash
 git clone https://github.com/CoderMageFox/claudecode-codex-subagents.git
 cd claudecode-codex-subagents
 cp codex-subagents.md ~/.claude/commands/
 ```
 
+**安装英文版本：**
+```bash
+git clone https://github.com/CoderMageFox/claudecode-codex-subagents.git
+cd claudecode-codex-subagents
+cp codex-subagents-en.md ~/.claude/commands/codex-subagents.md
+```
+
 ### 方法 3: 使用 curl
 
+**安装中文版本：**
 ```bash
 curl -o ~/.claude/commands/codex-subagents.md \
   https://raw.githubusercontent.com/CoderMageFox/claudecode-codex-subagents/main/codex-subagents.md
+```
+
+**安装英文版本：**
+```bash
+curl -o ~/.claude/commands/codex-subagents.md \
+  https://raw.githubusercontent.com/CoderMageFox/claudecode-codex-subagents/main/codex-subagents-en.md
 ```
 
 ## 前置要求
